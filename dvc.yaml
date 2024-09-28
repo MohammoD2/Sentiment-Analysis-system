@@ -1,0 +1,33 @@
+stages:
+  prepare_data:
+    cmd: python src/data/make_dataset.py
+    deps:
+      - src/data/make_dataset.py
+      - data/raw/train.csv
+      - data/raw/Suicide_Detection.csv
+    outs:
+      - data/processed/processed_data.csv
+
+  feature_engineering:
+    cmd: python src/features/build_features.py
+    deps:
+      - src/features/build_features.py
+      - data/processed/processed_data.csv
+    outs:
+      - data/processed/featured_data.csv
+
+  train_model:
+    cmd: python src/models/train_model.py
+    deps:
+      - src/models/train_model.py
+      - data/processed/featured_data.csv
+    outs:
+      - models/lstm_sentiment_model.h5
+      - models/tokenizer.pkl
+
+  predict_model:
+    cmd: python src/models/predict_model.py
+    deps:
+      - src/models/predict_model.py
+      - models/lstm_sentiment_model.h5
+      - models/tokenizer.pkl

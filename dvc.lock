@@ -1,0 +1,73 @@
+schema: '2.0'
+stages:
+  prepare_data:
+    cmd: python src/data/make_dataset.py
+    deps:
+    - path: data/raw/Suicide_Detection.csv
+      hash: md5
+      md5: 9a334b25a717e74f501559a9931569f7
+      size: 166902029
+    - path: data/raw/train.csv
+      hash: md5
+      md5: 42e084fd222e24347c26112b9400873f
+      size: 4642628
+    - path: src/data/make_dataset.py
+      hash: md5
+      md5: 543b2919b9b31da999336e891dcd8c35
+      size: 1504
+    outs:
+    - path: data/processed/processed_data.csv
+      hash: md5
+      md5: 579107de3df602f9f2ada78e54ee563c
+      size: 12766650
+  feature_engineering:
+    cmd: python src/features/build_features.py
+    deps:
+    - path: data/processed/processed_data.csv
+      hash: md5
+      md5: 579107de3df602f9f2ada78e54ee563c
+      size: 12766650
+    - path: src/features/build_features.py
+      hash: md5
+      md5: 1fde3026ae1c3ebebeb42a08211d9563
+      size: 2570
+    outs:
+    - path: data/processed/featured_data.csv
+      hash: md5
+      md5: 6e36317d85b2b8b06cbaac0306e765f9
+      size: 11907463
+  train_model:
+    cmd: python src/models/train_model.py
+    deps:
+    - path: data/processed/featured_data.csv
+      hash: md5
+      md5: 6e36317d85b2b8b06cbaac0306e765f9
+      size: 11907463
+    - path: src/models/train_model.py
+      hash: md5
+      md5: 0a4b3c25c0402f7f53d8356659a2dc10
+      size: 2914
+    outs:
+    - path: models/lstm_sentiment_model.h5
+      hash: md5
+      md5: 019c03f6f0c1168f73f6542b8c8adc83
+      size: 7004032
+    - path: models/tokenizer.pkl
+      hash: md5
+      md5: 305581631ba6c7c10908f330213f36ef
+      size: 2125141
+  predict_model:
+    cmd: python src/models/predict_model.py
+    deps:
+    - path: models/lstm_sentiment_model.h5
+      hash: md5
+      md5: 019c03f6f0c1168f73f6542b8c8adc83
+      size: 7004032
+    - path: models/tokenizer.pkl
+      hash: md5
+      md5: 305581631ba6c7c10908f330213f36ef
+      size: 2125141
+    - path: src/models/predict_model.py
+      hash: md5
+      md5: 7c0f7f8c048a207b98539fd536078ae5
+      size: 2088
