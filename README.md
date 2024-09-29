@@ -10,7 +10,7 @@ The model is designed to analyze sentiments across four distinct categories:
 2. Positive: Sentences expressing optimism, happiness, or positivity.
 3. Negative: Sentences reflecting dissatisfaction, anger, or negativity.
 4. Suicidal: Sentences indicating thoughts of self-harm or suicidal intent.
-5. 
+
 Project Organization
 ------------
 
