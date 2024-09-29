@@ -5,6 +5,12 @@ Sentiment Analysis is a natural language processing (NLP) technique used to dete
 It identifies and categorizes opinions expressed in a text, typically as positive, negative, or neutral.
 This method is widely applied in areas such as customer feedback, social media analysis, and product reviews to understand public sentiment and improve decision-making
 
+The model is designed to analyze sentiments across four distinct categories:
+1. Neutral: Sentences with no clear emotional leaning.
+2. Positive: Sentences expressing optimism, happiness, or positivity.
+3. Negative: Sentences reflecting dissatisfaction, anger, or negativity.
+4. Suicidal: Sentences indicating thoughts of self-harm or suicidal intent.
+5. 
 Project Organization
 ------------
 
